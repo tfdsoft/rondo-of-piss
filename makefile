@@ -37,8 +37,8 @@ $(OUTDIR)/$(NAME).nes: $(OUTDIR) $(TMPDIR)/$(NAME).o $(TMPDIR)/start.o $(CFG)
 	$(LD65) -C $(CFG) -o $(OUTDIR)/$(NAME).nes $(call ld65IncDir,$(TMPDIR)) $(call ld65IncDir,LIB) start.o $(NAME).o nes.lib --dbgfile $(OUTDIR)/famidash.dbg
 	@echo $(NAME).nes created
 
-$(TMPDIR)/start.o: graphics/*.chr libraries/*.s levels/*.s levels/metatiles/*.s levels/metatiles/*.inc musics/*.s musics/music_bank*.dmc
-	$(CA65) libraries/start.s --cpu 6502X -g $(call ca65IncDir,.) $(call ca65IncDir,MUSIC/EXPORTS) $(call ca65IncDir,$(TMPDIR)) -o $(TMPDIR)/start.o
+$(TMPDIR)/start.o: graphics/*.chr libraries/*.s #levels/*.s levels/metatiles/*.s levels/metatiles/*.inc musics/*.s musics/music_bank*.dmc
+	$(CA65) libraries/start.s --cpu 6502X -g $(call ca65IncDir,.) $(call ca65IncDir,musics) $(call ca65IncDir,$(TMPDIR)) -o $(TMPDIR)/start.o
 
 $(TMPDIR)/$(NAME).o: $(TMPDIR)/$(NAME).s
 	$(CA65) --cpu 6502X $(call ca65IncDir,libraries) $(TMPDIR)/$(NAME).s -g 
