@@ -2,6 +2,8 @@
 
 .exportzp _VRAM_UPDATE := VRAM_UPDATE
 
+.export _exit,__STARTUP__:absolute=1
+.export _PAL_BUF := PAL_BUF, _PAL_UPDATE := PAL_UPDATE, _xargs := xargs
 .import push0,popa,popax,_main
 
 .import __C_STACK_START__, __C_STACK_SIZE__
@@ -102,9 +104,6 @@ xargs:				.res 4
 .segment "STARTUP"
 start:
 _exit:
-
-
-
     jmp _main
 
     .include "nmi.s"

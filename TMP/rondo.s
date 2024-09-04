@@ -10,7 +10,7 @@
 	.importzp	sp, sreg, regsave, regbank
 	.importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 	.macpack	longbranch
-	.dbg		file, "source/rondo.c", 74, 1724896209
+	.dbg		file, "source/rondo.c", 73, 1725420335
 	.dbg		file, "source/include.h", 0, 1724894876
 	.forceimport	__STARTUP__
 	.export		_main
@@ -30,7 +30,7 @@
 ;
 ; while (1) {
 ;
-	.dbg	line, "source/rondo.c", 11
+	.dbg	line, "source/rondo.c", 6
 L0005:	jmp     L0005
 
 	.dbg	line

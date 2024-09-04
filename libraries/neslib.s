@@ -14,6 +14,7 @@
 
 	.export _pal_all,_pal_bg,_pal_spr,_pal_clear
 	.export _pal_bright,_pal_spr_bright,_pal_bg_bright
+	.export _pal_col
 	.export _ppu_off,_ppu_on_all,_ppu_on_bg,_ppu_on_spr,_ppu_mask,_ppu_system
 	.export _oam_clear,_oam_clear_player,_oam_size,__oam_spr,__oam_meta_spr,_oam_hide_rest
 	.export _ppu_wait_frame,_ppu_wait_nmi
@@ -102,10 +103,10 @@ _pal_spr:
 
 ;void __fastcall__ _pal_col(uint16_t data);
 
-; __pal_col:
-; 	sta PAL_BUF,x
-; 	inc <PAL_UPDATE
-; 	rts
+_pal_col:
+ 	sta PAL_BUF,x
+ 	inc <PAL_UPDATE
+ 	rts
 
 ; and then this is inlined
 
