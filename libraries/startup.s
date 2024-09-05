@@ -274,11 +274,24 @@ detectNTSC:
 
 	jmp _main			;no parameters
 
-    
+
     .include "mmc3.s"
-    .include "neslib.s"
     .include "nmi.s"
     .include "irq.s"
+
+.segment "NESLIB"
+    .include "neslib.s"
+
+    
+
+    
+    
+    
+
+
+.segment "chr_00"
+    
+
 
 
 .segment "VECTORS"
