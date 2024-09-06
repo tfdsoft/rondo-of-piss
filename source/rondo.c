@@ -1,8 +1,20 @@
 #include "include.h"
 
+
+
+
+
+
+
+
 void main(){
     ppu_off();
     mmc3_set_8kb_chr(0);
+
+
+
+    ppu_addr(0x1000);
+    
 
     funny = 0;
     music_play(0);
