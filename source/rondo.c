@@ -13,7 +13,7 @@ void main(){
 
 
 
-    ppu_addr(0x1000);
+    //ppu_addr(0x1000);
     
 
     funny = 0;
