@@ -38,7 +38,7 @@ $(OUTDIR)/$(NAME).nes: $(OUTDIR) $(TMPDIR)/$(NAME).o $(TMPDIR)/startup.o $(CFG)
 	@echo $(NAME).nes created
 # rm -rf $(TMPDIR)
 
-$(TMPDIR)/startup.o: graphics/*.chr libraries/*.s #levels/*.s levels/metatiles/*.s levels/metatiles/*.inc musics/*.s musics/music_bank*.dmc
+$(TMPDIR)/startup.o: graphics/*.chr libraries/*.s musics/*.s musics/music_bank*.dmc #levels/*.s levels/metatiles/*.s levels/metatiles/*.inc 
 	$(CA65) libraries/startup.s --cpu 6502X -g $(call ca65IncDir,.) $(call ca65IncDir,musics) $(call ca65IncDir,$(TMPDIR)) -o $(TMPDIR)/startup.o
 
 $(TMPDIR)/$(NAME).o: $(TMPDIR)/$(NAME).s
@@ -48,8 +48,8 @@ $(TMPDIR)/$(NAME).o: $(TMPDIR)/$(NAME).s
 #	$(PYTHON) defines_to_asm.py
 
 $(TMPDIR)/$(NAME).s: $(TMPDIR) source/$(NAME).c source/*.h # levels/metatiles/metatiles.h LEVELS/*.h LIB/headers/*.h MUSIC/EXPORTS/musicDefines.h 
-	$(CC65) -Osir -g --eagerly-inline-funcs source/$(NAME).c $(call cc65IncDir,LIB/headers) $(call cc65IncDir,.) -E --add-source -o $(TMPDIR)/$(NAME).c
-	$(CC65) -Osir -g --eagerly-inline-funcs source/$(NAME).c $(call cc65IncDir,LIB/headers) $(call cc65IncDir,.) --add-source -o $(TMPDIR)/$(NAME).s
+	$(CC65) -Osir -g --eagerly-inline-funcs source/$(NAME).c $(call cc65IncDir,libraries) $(call cc65IncDir,.) -E --add-source -o $(TMPDIR)/$(NAME).c
+	$(CC65) -Osir -g --eagerly-inline-funcs source/$(NAME).c $(call cc65IncDir,libraries) $(call cc65IncDir,.) --add-source -o $(TMPDIR)/$(NAME).s
 
 clean:
 	rm -rf $(TMPDIR)

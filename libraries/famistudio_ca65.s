@@ -4344,6 +4344,11 @@ famistudio_update:
 
 ;----------------------------------------------------------------------------------------------------------------------
 .if FAMISTUDIO_CFG_SFX_SUPPORT
+;!!! FAMISTUDIO DRIVER MODIFICATION BEGIN
+;*  MODIFIED
+    LDA #<.bank(sounds)
+    JSR mmc3_tmp_prg_bank_1
+;!!! FAMISTUDIO DRIVER MODIFICATION END
 
     ; Process all sound effect streams
     .if FAMISTUDIO_CFG_SFX_STREAMS > 0

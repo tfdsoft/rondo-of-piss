@@ -97,6 +97,11 @@ VRAM_BUF	=$0700
     ;the mmc3 code is using more of the stack
     ;and might collide with $1c0-1df
 
+.export _pad = PAD_STATEP
+.export _pad_new = PAD_STATET
+
+.importzp _PAD_STATE, _PAD_STATET ;added
+
 ;
 ; NES 2.0 header
 ;
@@ -132,6 +137,7 @@ _exit:
 	ldx #$40
 	stx CTRL_PORT2
     ldx #$ff
+    stx _irqTable
     txs
     inx
     stx PPU_MASK
@@ -238,15 +244,15 @@ detectNTSC:
 	ldx #0
 	jsr _set_vram_update
 
-	;LDA #<-1        ;   Do famistudio_init
-    ;JSR _music_play ;__
+	LDA #<-1        ;   Do famistudio_init
+    JSR _music_play ;__
 
-    ;LDA #<.bank(sounds)
-    ;JSR mmc3_tmp_prg_bank_1
+    LDA #<.bank(sounds)
+    JSR mmc3_set_prg_bank_1
     
-	;ldx #<sounds
-	;ldy #>sounds
-	;jsr famistudio_sfx_init
+	ldx #<sounds
+	ldy #>sounds
+	jsr famistudio_sfx_init
 
 	lda $60FC
 	beq @fallback
@@ -281,12 +287,30 @@ detectNTSC:
     .include "nmi.s"
     .include "irq.s"
 
+.segment "CODE_2"
+    .include "wrappers.s"
+
+
 .segment "SND_DRV"
     .include "famistudio_ca65.s"
-    .include "wrappers.s"
+    
 
 .segment "NESLIB"
     .include "neslib.s"
+
+
+
+.segment "music_00" 
+    .include "../musics/music.s"
+
+.segment "dmc_00"   
+    .incbin "../musics/music_bank0.dmc"
+.segment "dmc_01"   
+    .incbin "../musics/music_bank1.dmc"
+.segment "dmc_02"   
+    .incbin "../musics/music_bank2.dmc"
+
+
 
 .segment "sfx"
     .include "../musics/sfx.s"

@@ -1,4 +1,4 @@
-; void __fastcall__ music_play(uint8_t song);
+; void __fastcall__ music_play(unsigned char song);
 .segment "CODE_2"
 
 .import FIRST_MUSIC_BANK
@@ -94,10 +94,8 @@ music_counts:
 
 
 
-; void __fastcall__ sfx_play(uint8_t sfx_index, uint8_t channel);
+; void __fastcall__ sfx_play(unsigned char sfx_index, unsigned char channel);
 .segment "CODE_2"
-
-.import _options
 
 .export __sfx_play
 .proc __sfx_play  
@@ -116,3 +114,6 @@ music_counts:
 	pla
 	jsr mmc3_set_prg_bank_1
 .endproc
+
+
+
