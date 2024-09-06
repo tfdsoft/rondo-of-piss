@@ -112,7 +112,7 @@ music_counts:
     jsr famistudio_sfx_play
 
 	pla
-	jsr mmc3_set_prg_bank_1
+	jmp mmc3_set_prg_bank_1
 .endproc
 
 

@@ -34,7 +34,7 @@ $(TMPDIR):
 	$(MKDIR) $(TMPDIR)
 
 $(OUTDIR)/$(NAME).nes: $(OUTDIR) $(TMPDIR)/$(NAME).o $(TMPDIR)/startup.o $(CFG)
-	$(LD65) -C $(CFG) -o $(OUTDIR)/$(NAME).nes $(call ld65IncDir,$(TMPDIR)) $(call ld65IncDir,LIB) startup.o $(NAME).o nes.lib --dbgfile $(OUTDIR)/famidash.dbg
+	$(LD65) -C $(CFG) -o $(OUTDIR)/$(NAME).nes $(call ld65IncDir,$(TMPDIR)) $(call ld65IncDir,LIB) startup.o $(NAME).o nes.lib --dbgfile $(OUTDIR)/$(NAME).dbg
 	@echo $(NAME).nes created
 # rm -rf $(TMPDIR)
 
