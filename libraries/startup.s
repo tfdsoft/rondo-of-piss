@@ -37,9 +37,9 @@ DMC_FREQ	=$4010
 CTRL_PORT1	=$4016
 CTRL_PORT2	=$4017
 
-OAM_BUF		=$0200
-;PAL_BUF		=$01c0
-VRAM_BUF	=$0700
+VRAM_BUF=__VRAM_BUF_START__
+OAM_BUF=__OAM_BUF_START__
+PAL_BUF=__PAL_BUF_START__
 
 .segment "ZEROPAGE"
 
@@ -90,8 +90,10 @@ VRAM_BUF	=$0700
 
     xargs:				.res 4
 
+;.segment "PAL_BUF"
+;    PAL_BUF: .res 32
 .segment "BSS"
-    PAL_BUF: .res 32
+    
     current_song_bank:	.res 1
     ;move this out of the hardware stack
     ;the mmc3 code is using more of the stack
@@ -248,7 +250,7 @@ detectNTSC:
     JSR _music_play ;__
 
     LDA #<.bank(sounds)
-    JSR mmc3_set_prg_bank_1
+    JSR mmc3_tmp_prg_bank_1
     
 	ldx #<sounds
 	ldy #>sounds
