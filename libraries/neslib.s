@@ -20,8 +20,8 @@
     .export _scroll,_split
     .export _bank_spr,_bank_bg
     .export _vram_read,_vram_write
-    .export _music_play,_music_stop,_music_pause
-    .export _sfx_play,_sample_play
+    ;.export _music_play,_music_stop,_music_pause
+    ;.export _sfx_play,_sample_play
     .export _pad_poll,_pad_trigger,_pad_state
     .export _rand8,_rand16,_set_rand
     .export _vram_adr,_vram_put,_vram_fill,_vram_inc,_vram_unrle

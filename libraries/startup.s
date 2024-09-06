@@ -1,6 +1,7 @@
     
 .exportzp _VRAM_UPDATE := VRAM_UPDATE
 
+    
     .export _exit,__STARTUP__:absolute=1
 	.export _PAL_BUF := PAL_BUF, _PAL_UPDATE := PAL_UPDATE, _xargs := xargs
 	.import push0,popa,popax,_main
@@ -91,6 +92,7 @@ VRAM_BUF	=$0700
 
 .segment "BSS"
     PAL_BUF: .res 32
+    current_song_bank:	.res 1
     ;move this out of the hardware stack
     ;the mmc3 code is using more of the stack
     ;and might collide with $1c0-1df
@@ -279,18 +281,18 @@ detectNTSC:
     .include "nmi.s"
     .include "irq.s"
 
+.segment "SND_DRV"
+    .include "famistudio_ca65.s"
+    .include "wrappers.s"
+
 .segment "NESLIB"
     .include "neslib.s"
 
-    
-
-    
-    
-    
-
+.segment "sfx"
+    .include "../musics/sfx.s"
 
 .segment "chr_00"
-    
+
 
 
 

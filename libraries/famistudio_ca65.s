@@ -82,9 +82,9 @@
 ; like the example below.
 ;======================================================================================================================
 
-.define FAMISTUDIO_CA65_ZP_SEGMENT   ZP
-.define FAMISTUDIO_CA65_RAM_SEGMENT  RAM
-.define FAMISTUDIO_CA65_CODE_SEGMENT PRG
+.define FAMISTUDIO_CA65_ZP_SEGMENT   ZEROPAGE
+.define FAMISTUDIO_CA65_RAM_SEGMENT  BSS
+.define FAMISTUDIO_CA65_CODE_SEGMENT SND_DRV
 
 ;======================================================================================================================
 ; 2) AUDIO EXPANSION CONFIGURATION
@@ -139,24 +139,24 @@
 ;======================================================================================================================
 
 ; One of these MUST be defined (PAL or NTSC playback). Note that only NTSC support is supported when using any of the audio expansions.
-; FAMISTUDIO_CFG_PAL_SUPPORT   = 1
+FAMISTUDIO_CFG_PAL_SUPPORT   = 1
 FAMISTUDIO_CFG_NTSC_SUPPORT  = 1
 
 ; Support for sound effects playback + number of SFX that can play at once.
-; FAMISTUDIO_CFG_SFX_SUPPORT   = 1 
-; FAMISTUDIO_CFG_SFX_STREAMS   = 2
+FAMISTUDIO_CFG_SFX_SUPPORT   = 1 
+FAMISTUDIO_CFG_SFX_STREAMS   = 2
 
 ; Blaarg's smooth vibrato technique. Eliminates phase resets ("pops") on square channels. 
-; FAMISTUDIO_CFG_SMOOTH_VIBRATO = 1 
+FAMISTUDIO_CFG_SMOOTH_VIBRATO = 1 
 
 ; Enables DPCM playback support.
 FAMISTUDIO_CFG_DPCM_SUPPORT   = 1
 
 ; Must be enabled if you are calling sound effects from a different thread than the sound engine update.
-; FAMISTUDIO_CFG_THREAD         = 1     
+FAMISTUDIO_CFG_THREAD         = 1     
 
 ; Enable to use the CC65 compatible entrypoints via the provided header file
-; FAMISTUDIO_CFG_C_BINDINGS   = 1
+FAMISTUDIO_CFG_C_BINDINGS   = 1
 
 ;======================================================================================================================
 ; 4) SUPPORTED FEATURES CONFIGURATION
@@ -171,11 +171,11 @@ FAMISTUDIO_CFG_DPCM_SUPPORT   = 1
 ; FamiStudio tempo mode, this must be undefined. You cannot mix and match tempo modes, the engine can only run in one
 ; mode or the other. 
 ; More information at: https://famistudio.org/doc/song/#tempo-modes
-; FAMISTUDIO_USE_FAMITRACKER_TEMPO = 1
+FAMISTUDIO_USE_FAMITRACKER_TEMPO = 1
 
 ; Must be enabled if the songs uses delayed notes or delayed cuts. This is obviously only available when using
 ; FamiTracker tempo mode as FamiStudio tempo mode does not need this.
-; FAMISTUDIO_USE_FAMITRACKER_DELAYED_NOTES_OR_CUTS = 1
+FAMISTUDIO_USE_FAMITRACKER_DELAYED_NOTES_OR_CUTS = 1
 
 ; Must be enabled if the songs uses release notes. 
 ; More information at: https://famistudio.org/doc/pianoroll/#release-point
@@ -188,7 +188,7 @@ FAMISTUDIO_USE_VOLUME_TRACK      = 1
 
 ; Must be enabled if any song uses slides on the volume track. Volume track must be enabled too.
 ; More information at: https://famistudio.org/doc/pianoroll/#editing-volume-tracks-effects
-; FAMISTUDIO_USE_VOLUME_SLIDES     = 1
+FAMISTUDIO_USE_VOLUME_SLIDES     = 1
 
 ; Must be enabled if any song uses the pitch track. The pitch track allows manipulating the pitch at the track level
 ; independently from instruments.
@@ -201,7 +201,7 @@ FAMISTUDIO_USE_SLIDE_NOTES       = 1
 
 ; Must be enabled if any song uses slide notes on the noise channel too. 
 ; More information at: https://famistudio.org/doc/pianoroll/#slide-notes
-; FAMISTUDIO_USE_NOISE_SLIDE_NOTES = 1
+FAMISTUDIO_USE_NOISE_SLIDE_NOTES = 1
 
 ; Must be enabled if any song uses the vibrato speed/depth effect track. 
 ; More information at: https://famistudio.org/doc/pianoroll/#vibrato-depth-speed
@@ -213,17 +213,17 @@ FAMISTUDIO_USE_VIBRATO           = 1
 FAMISTUDIO_USE_ARPEGGIO          = 1
 
 ; Must be enabled if any song uses the "Duty Cycle" effect (equivalent of FamiTracker Vxx, also called "Timbre").  
-; FAMISTUDIO_USE_DUTYCYCLE_EFFECT  = 1
+FAMISTUDIO_USE_DUTYCYCLE_EFFECT  = 1
 
 ; Must be enabled if any song uses the DPCM delta counter. Only makes sense if DPCM samples
 ; are enabled (FAMISTUDIO_CFG_DPCM_SUPPORT).
 ; More information at: (TODO)
-; FAMISTUDIO_USE_DELTA_COUNTER     = 1
+FAMISTUDIO_USE_DELTA_COUNTER     = 1
 
 ; Must be enabled if your project uses more than 1 bank of DPCM samples.
 ; When using this, you must implement the "famistudio_dpcm_bank_callback" callback 
 ; and switch to the correct bank every time a sample is played.
-; FAMISTUDIO_USE_DPCM_BANKSWITCHING = 1
+FAMISTUDIO_USE_DPCM_BANKSWITCHING = 1
 
 ; Must be enabled if your project uses more than 63 unique DPCM mappings (a mapping is DPCM sample
 ; assigned to a note, with a specific pitch/loop, etc.). Implied when using FAMISTUDIO_USE_DPCM_BANKSWITCHING.
